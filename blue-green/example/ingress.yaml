@@ -4,6 +4,7 @@ metadata:
   name: bluegreen-demo-preview
   namespace: bluegreen-demo
   annotations:
+    ingress.kubernetes.io/rewrite-target: /
     ingress.kubernetes.io/proxy-body-size: 100M
     kubernetes.io/ingress.class: nginx
     ingress.kubernetes.io/app-root: /
@@ -22,6 +23,7 @@ metadata:
     name: bluegreen-demo
     namespace: bluegreen-demo
     annotations:
+      ingress.kubernetes.io/rewrite-target: /
       ingress.kubernetes.io/proxy-body-size: 100M
       kubernetes.io/ingress.class: nginx
       ingress.kubernetes.io/app-root: /
