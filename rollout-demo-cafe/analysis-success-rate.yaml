@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  args:
+  - name: stable-hash
+  - name: canary-hash
+  - name: l1
+  - name: l2
+  - name: env
+  metrics:
+  - name: success-rate
+    successCondition: "asFloat(result) > .95"
+    count: 3
+    interval: 30s
+    consecutiveErrorLimit: 2
+    failureLimit: 2
+    provider:
+      web:
+        url: https://ace-service-us-west-2.cg-sre-preprod.a.intuit.com/v1/core/iks
+        #url: http://192.168.1.11/metrics/
+        jsonPath: "{$.value}"
+        timeoutSeconds: 30
+        headers:
+        - key: "ch"
+          value: "{{args.canary-hash}}"
+        - key: "bh"
+          value: "{{args.stable-hash}}"
+        - key: "l1"
+          value: "{{args.l1}}"
+        - key: "l2"
+          value: "{{args.l2}}"
+        - key: "rgn"
+          value: "usw2"
+        - key: "env"
+          value: "prd"
+        - key: "app"
+          value: "interview-service"
