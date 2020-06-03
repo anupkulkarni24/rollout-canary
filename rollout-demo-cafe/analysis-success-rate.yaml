@@ -18,8 +18,7 @@ spec:
     failureLimit: 2
     provider:
       web:
-        url: https://ace-service-us-west-2.cg-sre-preprod.a.intuit.com/v1/core/iks
-        #url: http://192.168.1.11/metrics/
+        url: https://192.168.56.101/metrics/
         jsonPath: "{$.value}"
         timeoutSeconds: 30
         headers:
