@@ -26,7 +26,7 @@ spec:
           protocol: TCP
         resources:
           requests:
-            memory: 32Mi
+            memory: 64Mi
             cpu: 5m
   strategy:
     blueGreen:
